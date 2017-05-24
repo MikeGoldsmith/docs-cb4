@@ -219,8 +219,11 @@
     
     </section>
       
-      
     <section id="overriding-supported-ciphers">
+      
+      <!-- We are no longer listed the macOS ciphers. But we should update this passage with
+           the linux ciphers.
+         -->
       
       <title>
         Overriding Supported Ciphers
@@ -228,7 +231,12 @@
     
           <p>
             Couchbase Server uses ciphers that are accepted by default by OpenSSL.The default behavior 
-            employs <i>high</i>-security ciphers, built into openSSL. On macOS these are: 
+            employs <i>high</i>-security ciphers, built into openSSL. 
+            
+          </p>
+      
+      <!--
+            On macOS these are: 
           </p>
             
             <ul>
@@ -236,20 +244,24 @@
               <li>AES128-SHA</li>
               <li>DES-CBC3-SHA </li>
             </ul>
+            -->
     
           <p>
-            You can override this selection, by setting the following environment variable before
+            You can explicitly specify the contents of your cipher-list, by setting the following environment variable before
             starting Couchbase: 
           </p>
     
           <codeblock>COUCHBASE_SSL_CIPHER_LIST= &lt;<i>list-of-ciphers-to-accept</i>&gt;</codeblock>
            
           <p>
-            If you wish to include both medium and high-security ciphers in your installation, you
-            can define the environment variable as follows:
+            You can also use this environment variable to include either medium-security ciphers, or high-security ciphers, or both. To
+            include both, set
+            the environment variable as follows:
           </p>
       
           <codeblock>COUCHBASE_SSL_CIPHER_LIST= MEDIUM, HIGH</codeblock> 
+      
+      <!--
       
           <p>
             For macOS, the ciphers so specified would be the following
@@ -263,6 +275,8 @@
               <li>RC4-SHA</li>
               <li>RC4-MD5</li>
           </ul>
+          
+          -->
   
     </section>
     
@@ -305,13 +319,18 @@
           To protect data transmitted between data centers, you can
           use TLS to encrypt your XDCR connection. When you enable TLS in XDCR, Couchbase Server uses
           TLS certificates. TLS versions 1.0 to 1.2 are supported. All traffic between source and destination-datacenters is
-          encrypted. Note that the encryption causes a slight increase in the CPU load.
+          encrypted. Note that the encryption causes a slight increase in the CPU load. 
         </p>
         
         <p>
           You are recommended to rotate the XDCR
           certificates periodically, in accordance with your organization's security policy.
         </p>
+      
+      <p>
+        For further details, see
+        <xref href="../xdcr/xdcr-managing-security.dita" scope="local" format="dita">XDCR Data Security</xref>.
+      </p>
       
     </section>
     
